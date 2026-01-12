@@ -1,1 +1,408 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeliverEnergy ポートフォリオ</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+        }
+        h1 {
+            font-size: 2.5em;
+            border-bottom: 2px solid #eaecef;
+            padding-bottom: 0.3em;
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 1.75em;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        h3 {
+            font-size: 1.4em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: #24292e;
+        }
+        h4 {
+            font-size: 1.1em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        p { margin-bottom: 16px; }
+        ul { margin-bottom: 16px; padding-left: 20px; }
+        li { margin-bottom: 5px; }
+        
+        /* 画像のスタイル：画面からはみ出さないように調整 */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 15px 0;
+            border: 1px solid #ddd; /* 薄い枠線を追加 */
+            border-radius: 4px;
+        }
+        
+        /* リンクのスタイル */
+        a { color: #0366d6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
 
+        /* コードブロック風のスタイル */
+        code {
+            background-color: #f6f8fa;
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 85%;
+        }
+
+        /* 目次のスタイル */
+        .toc {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid #e1e4e8;
+        }
+        .toc ul { list-style-type: none; padding-left: 0; }
+        .toc > ul > li { font-weight: bold; margin-top: 10px; }
+        .toc ul ul { list-style-type: disc; padding-left: 20px; font-weight: normal; margin-top: 5px; }
+        .toc ul ul ul { list-style-type: circle; }
+
+        hr {
+            height: 1px;
+            background-color: #e1e4e8;
+            border: none;
+            margin: 40px 0;
+        }
+        
+        .author-info {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>DeliverEnergy</h1>
+        <img src="Md_Sprite/Title.png" alt="Title">
+        <p class="author-info"><strong>河原電子ビジネス専門学校　ゲームクリエイター科2年</strong> <strong>氏名：伊藤侑生</strong></p>
+    </header>
+
+    <hr>
+
+    <nav class="toc">
+        <h2>目次</h2>
+        <ul>
+            <li>1. <a href="#1-作品概要">作品概要</a></li>
+            <li>2. <a href="#2-担当ソースコード">担当ソースコード</a></li>
+            <li>3. <a href="#3-操作説明">操作説明</a></li>
+            <li>4. <a href="#4-ゲーム説明">ゲーム説明</a>
+                <ul>
+                    <li><strong>4.1</strong>. <a href="#41-ゲーム詳細">ゲーム詳細</a></li>
+                    <li><strong>4.2</strong>. <a href="#42-ゲーム内演出">ゲーム内演出</a>
+                        <ul>
+                            <li><strong>1</strong>. <a href="#1-ゲーム中の副音声">ゲーム中の副音声</a></li>
+                            <li><strong>2</strong>. <a href="#2-ボスの登場シーン">ボスの登場シーン</a></li>
+                        </ul>
+                    </li>
+                    <li><strong>4.3</strong>. <a href="#43-プレイヤーについて">プレイヤーについて</a>
+                        <ul>
+                            <li><strong>1</strong>. <a href="#1-缶の状態">缶の状態</a></li>
+                            <li><strong>2</strong>. <a href="#2-カメラ基準の入力処理">カメラ基準の入力処理</a></li>
+                            <li><strong>3</strong>. <a href="#3-クォータニオンを用いた複雑な3次元回転の制御">クォータニオンを用いた複雑な3次元回転の制御</a></li>
+                        </ul>
+                    </li>
+                    <li><strong>4.4</strong>. <a href="#44-敵について">敵について</a>
+                        <ul>
+                            <li><strong>1</strong>. <a href="#1-ボス">ボス</a>
+                                <ul>
+                                    <li><strong>a</strong>. <a href="#a-ボスの役割とコンセプト">ボスの役割とコンセプト</a></li>
+                                    <li><strong>b</strong>. <a href="#b-実装上の特徴-state-pattern">実装上の特徴</a></li>
+                                </ul>
+                            </li>
+                            <li><strong>2</strong>. <a href="#2-眷属">眷属</a>
+                                <ul>
+                                    <li><strong>a</strong>. <a href="#a-眷属の役割とコンセプト">眷属の役割とコンセプト</a></li>
+                                    <li><strong>b</strong>. <a href="#b-実装上の特徴-同期制御">実装上の特徴</a></li>
+                                </ul>
+                            </li>
+                            <li><strong>3</strong>. <a href="#3-雑魚敵">雑魚敵</a>
+                                <ul>
+                                    <li><strong>a</strong>. <a href="#a-雑魚敵の役割とコンセプト">雑魚敵の役割とコンセプト</a></li>
+                                    <li><strong>b</strong>. <a href="#b-実装上の特徴-ai-controller--waypoints">実装上の特徴</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>5. <a href="#5-技術紹介">技術紹介</a></li>
+        </ul>
+    </nav>
+
+    <hr>
+
+    <section id="1-作品概要">
+        <h2>1. 作品概要</h2>
+        <ul>
+            <li><strong>タイトル</strong>: DeliverEnergy</li>
+            <li><strong>制作人数</strong>: 1人</li>
+            <li><strong>制作期間</strong>: 2025年9月 ～ 2025年1月</li>
+            <li><strong>ゲームジャンル</strong>: 3Dアクションゲーム</li>
+            <li><strong>プレイ人数</strong>: 1人</li>
+            <li><strong>使用言語</strong>:
+                <ul>
+                    <li>C++</li>
+                    <li>HLSL</li>
+                </ul>
+            </li>
+            <li><strong>使用ツール</strong>:
+                <ul>
+                    <li><strong>プログラム(C++)</strong>: Visual Studio 2022</li>
+                    <li><strong>プログラム(HLSL)</strong>: VS Code</li>
+                    <li><strong>3Dソフト</strong>: 3ds Max</li>
+                    <li><strong>エフェクト</strong>: Effekseer</li>
+                    <li><strong>画像</strong>: Adobe Photoshop 2025, FireAlpaca64</li>
+                    <li><strong>バージョン管理</strong>: Git, GitHub, Fork</li>
+                    <li><strong>タスク管理</strong>: Notion</li>
+                    <li><strong>動画作成</strong>: Adobe PremierePro</li>
+                </ul>
+            </li>
+            <li><strong>開発環境</strong>:
+                <ul>
+                    <li><strong>エンジン</strong>: 学校内製の簡易エンジン (DirectX12)</li>
+                    <li><strong>OS</strong>: Windows11</li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+
+    <hr>
+
+    <section id="2-担当ソースコード">
+        <h2>2. 担当ソースコード</h2>
+
+        <h3>▶ ゲーム部分 (ゲームの進行)</h3>
+        <ul>
+            <li>BackGround.cpp / .h</li>
+            <li>CoinUI.cpp / .h</li>
+            <li>Countdown.cpp / .h</li>
+            <li>Game.cpp / .h</li>
+            <li>GameCamera.cpp / .h</li>
+            <li>GameClear.cpp / .h</li>
+            <li>GameStateBase.cpp / .h</li>
+            <li>GameTimeUI.cpp / .h</li>
+            <li>GetItem.cpp / .h</li>
+            <li>InGameState.cpp / .h</li>
+            <li>main.cpp</li>
+            <li>Pause.cpp / .h</li>
+            <li>Player.cpp / .h</li>
+            <li>Setting.cpp / .h</li>
+            <li>StageManager.cpp / .h</li>
+            <li>stdafx.cpp / .h</li>
+            <li>Title.cpp / .h</li>
+        </ul>
+
+        <h3>▶ Athletic</h3>
+        <ul>
+            <li>AthleticBase.cpp / .h</li>
+            <li>AthleticManager.cpp / .h</li>
+            <li>AthleticStage.cpp / .h</li>
+            <li>AthleticTrigger.cpp / .h</li>
+        </ul>
+
+        <h3>▶ Collision</h3>
+        <ul>
+            <li>CollisionHitManager.cpp / .h</li>
+        </ul>
+
+        <h3>▶ Enemy</h3>
+        <ul>
+            <li>Boss.cpp / .h</li>
+            <li>BossStatusUI.cpp / .h</li>
+            <li>EnemyBase.cpp / .h</li>
+            <li>EnemyController.cpp / .h</li>
+            <li>EnemyManager.cpp / .h</li>
+            <li>EnemyStatePattern.cpp / .h</li>
+            <li>EnemyStatus.cpp / .h</li>
+            <li>Familiar.cpp / .h</li>
+            <li>NoobEnemy.cpp / .h</li>
+        </ul>
+    </section>
+
+    <hr>
+
+    <section id="3-操作説明">
+        <h2>3. 操作説明</h2>
+        <img src="Md_Sprite/Manual.png" alt="操作説明">
+    </section>
+
+    <hr>
+
+    <section id="4-ゲーム説明">
+        <h2>4. ゲーム説明</h2>
+
+        <h3 id="41-ゲーム詳細">4.1 ゲーム詳細</h3>
+        <p>このゲームは、栄養ドリンクを操作して家主の元までたどり着くとゲームクリアになります。<br>
+        プレイヤーは<strong>直立モード</strong>と<strong>転がりモード</strong>を駆使してステージを攻略していきます。</p>
+        
+        <h4>直立モード</h4>
+        <img src="Md_Gif/Can_Upright.gif" alt="直立モード">
+        
+        <h4>転がりモード</h4>
+        <img src="Md_Gif/Can_Fall.gif" alt="転がりモード">
+
+        <p>マップ構成はボスと戦うステージとアスレチックを攻略するステージの2種類が一体型となったマップ構成になっています。</p>
+
+        <h4>ボスステージ</h4>
+        <img src="Md_Sprite/BossStage.png" alt="ボスステージ">
+        
+        <h4>アスレチックステージ</h4>
+        <img src="Md_Sprite/AthleticStage.png" alt="アスレチックステージ">
+
+        <h3 id="42-ゲーム内演出">4.2 ゲーム内演出</h3>
+
+        <h4 id="1-ゲーム中の副音声">1. ゲーム中の副音声</h4>
+        <p>とあるゲームをプレイしているときに、ガイド役のキャラクターがサポートしてくれると一緒に冒険している感が出てより楽しむことが出来たので、ゲーム中副音声によるガイドで現在の目的が何かを明確にしつつ、聴覚でも楽しめるようにしました。</p>
+        <img src="Md_Sprite/SubVoice.png" alt="副音声">
+
+        <h4 id="2-ボスの登場シーン">2. ボスの登場シーン</h4>
+        <p>敵はゲーム制作中のバグをモチーフにしているので、ボスが登場するときにパソコンからバグが実体化するという演出を作りました。<br>
+        出現時にボスの色を変えることで、バグが起きている感を表現しました。</p>
+        <img src="Md_Gif/Boss_syutugen.gif" alt="ボス登場">
+
+        <h3 id="43-プレイヤーについて">4.3 プレイヤーについて</h3>
+
+        <h4 id="1-缶の状態">1. 缶の状態</h4>
+        <p>『直立モード』と『転がりモード』という2つの状態をステートを使って切り替えるアクションを実装しました。<br>
+        特に転がり状態では、単純な移動ではなく加速度ベクトルを用いた慣性処理を行い、缶特有の『重み』と『転がり感』を再現しました。また、現在の移動速度をジャンプ力に加算する処理を入れることで、加速を利用して遠くへ飛ぶという挙動を行っています。</p>
+
+        <h4 id="2-カメラ基準の入力処理">2. カメラ基準の入力処理</h4>
+        <p>コントローラー（左スティック）の入力を、カメラの視点方向（Forward / Rightベクトル）に合わせて変換しています。これにより、カメラがどこを向いていても、プレイヤーが「画面上の見たままの方向」に入力できる直感的な操作を行っています。</p>
+
+        <h4 id="3-クォータニオンを用いた複雑な3次元回転の制御">3. クォータニオンを用いた複雑な3次元回転の制御</h4>
+        <p>プレイヤーの回転制御にはクォータニオン（四元数）を採用しました。『進行方向への旋回』『転倒時の姿勢制御』『移動距離に基づいた自転アニメーション』の3要素を合成し、ジンバルロックを防ぎつつ意図通りの挙動を実装しています。また、状態遷移時にはSlerpを用いた球面線形補間を行い、急激な挙動変化のない滑らかな姿勢変更を実現しました。</p>
+
+        <h3 id="44-敵について">4.4 敵について</h3>
+        <p>敵は、ボス、ボスの眷属、雑魚敵の3種類が存在します。</p>
+
+        <h4>雑魚敵</h4>
+        <img src="Md_Sprite/NoobEnemy.png" alt="雑魚敵">
+        
+        <h4>ボスの眷属</h4>
+        <img src="Md_Sprite/Familiar.png" alt="ボスの眷属">
+        
+        <h4>ボス</h4>
+        <img src="Md_Sprite/Boss.png" alt="ボス">
+
+        <p>敵AIの構築には<strong>ステートパターン</strong>を採用しました。『待機』『移動』『召喚』といった行動を個別のクラスとして実装し、状態遷移の条件を明確に定義することで、複雑なボス戦のフローをバグなく管理しています。これにより、新しい攻撃パターンの追加や仕様変更にも柔軟に対応できる設計となっています。</p>
+
+        <h4 id="1-ボス">1. ボス</h4>
+        <p>ゲームの進行を司る中心的な存在であり、自ら攻撃するだけでなく、部下（眷属）を召喚してけしかける「司令塔」としての役割を持っています。</p>
+        <ul>
+            <li id="a-ボスの役割とコンセプト"><strong>a. ボスの役割とコンセプト</strong>
+                <ul>
+                    <li><strong>司令塔</strong>: ボス自体は直接攻撃しても倒せず、召喚した「眷属」をすべて倒すことで初めてダメージが入るギミックを持っています。</li>
+                    <li><strong>フェーズ管理</strong>: HP（初期値3）が減るごとに、新しい敵の生成（召喚）フェーズへと移行し、戦闘の難易度を段階的に引き上げます。</li>
+                </ul>
+            </li>
+            <li id="b-実装上の特徴-state-pattern"><strong>b. 実装上の特徴 (State Pattern)</strong>
+                <ul>
+                    <li><strong>行動遷移</strong>: <code>BossIdleState</code>（待機）→ <code>BossMoveState</code>（移動）→ <code>BossCreateFamiliarState</code>（召喚）というサイクルで行動します。</li>
+                    <li><strong>上下の動き</strong>: <code>BossMoveState</code>では、<code>ComputeNextPosition</code>関数を用いて、指定されたY座標の範囲内（<code>BOSS_MIN_Y</code> ～ <code>BOSS_MAX_Y</code>）を浮遊するように往復移動します。</li>
+                    <li><strong>召喚リクエスト</strong>: 自身で敵を生成するのではなく、<code>m_isRequestCreateFamiliar</code>フラグを立てて<code>EnemyManager</code>に生成を依頼する形をとっており、オブジェクト間の責任分界点が明確です。</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h4 id="2-眷属">2. 眷属</h4>
+        <p>ボスの「分身体」であり「本体」とも言える存在です。ボスの周囲をガードするように浮遊し、プレイヤーの標的となります。</p>
+        <ul>
+            <li id="a-眷属の役割とコンセプト"><strong>a. 眷属の役割とコンセプト</strong>
+                <ul>
+                    <li><strong>ボスの分身体</strong>: ボスのHP減少のトリガーとなる重要な敵です。倒されると<code>EnemyManager</code>を経由してボスにダメージを与えます。</li>
+                    <li><strong>随伴行動</strong>: 独立して動くのではなく、ボスの動きに合わせて移動します。</li>
+                </ul>
+            </li>
+            <li id="b-実装上の特徴-同期制御"><strong>b. 実装上の特徴 (同期制御)</strong>
+                <ul>
+                    <li><strong>親との同期</strong>: <code>FamiliarMoveState</code>内で<code>EnemyManager</code>からボスのインスタンスを取得し、ボスの移動方向フラグ（<code>IsMovingUp</code>）を参照しています。</li>
+                    <li><strong>速度の調整</strong>: ボスと全く同じ動きをするのではなく、<code>syncSpeedRatio</code>（例: 140/200）を掛けることで、ボスに追従しつつも少し遅れて動くような、浮遊感のある慣性表現を実装しています。</li>
+                    <li><strong>バリエーション</strong>: <code>Setup</code>関数でタイプ（A, B）を指定することで、読み込むモデル（<code>bossEnemy_TypeA.tkm</code>等）を切り替え、見た目にバリエーションを持たせています。</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h4 id="3-雑魚敵">3. 雑魚敵</h4>
+        <p>画面を賑やかにし、プレイヤーの邪魔をする大量の敵キャラクターです。</p>
+        <ul>
+            <li id="a-雑魚敵の役割とコンセプト"><strong>a. 雑魚敵の役割とコンセプト</strong>
+                <ul>
+                    <li><strong>数で威圧する</strong>: 眷属召喚のタイミングに合わせて、一度に複数体（4体セットなど）が出現します。</li>
+                    <li><strong>多様な出現パターン</strong>: 出現するウェーブ数（ボスのダメージ段階）に応じて、出現位置や移動ルートが変化します。</li>
+                </ul>
+            </li>
+            <li id="b-実装上の特徴-ai-controller--waypoints"><strong>b. 実装上の特徴 (AI Controller & Waypoints)</strong>
+                <ul>
+                    <li><strong>分離されたAI</strong>: <code>NoobEnemy</code>クラス自体は単純な移動（<code>NoobEnemyMoveState</code>）を行うのみで、複雑な思考ルーチンは<code>EnemyController</code>クラスに委譲しています。</li>
+                    <li><strong>ウェイポイント巡回</strong>: <code>EnemyController</code>は<code>MOVE_POSITION_LIST</code>に定義された4つの座標（ウェイポイント）を持っています。タイプ（A～Lの12種類）ごとに異なる巡回ルートが設定されており、単調な動きにならないよう工夫されています。</li>
+                    <li><strong>目標追従</strong>: <code>EnemyController</code>がターゲット座標を計算し、<code>NoobEnemy</code>に対して移動ベクトル（<code>SetMoveVector</code>）を設定することで操作する、操り人形のような制御構造になっています。</li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+
+    <hr>
+
+    <section id="5-技術紹介">
+        <h2>5. 技術紹介</h2>
+        
+        <h3>1. プレイヤーの転がり処理</h3>
+        <ul>
+            <li><strong>課題</strong>: 円筒状のキャラクターが地面を転がる際、移動方向と回転軸がずれると不自然に見えてしまう。また、急に止まると重量感が損なわれてしまうという課題がありました。</li>
+            <li><strong>工夫</strong>: 
+                <ul>
+                    <li>
+                        <h4>1. 擬似的な慣性 (Inertia):</h4>
+                        通常のキャラクターコントローラーは入力ストップで即停止します。そこで<code>rollVelocity</code>を変数として持ち、<code>rollVelocity *= 0.5f;</code> のように減衰処理を書いて「滑るような動き」を作りました。
+                    </li>
+                    <li>
+                        <h4>2. 速度の合成:</h4>
+                        「入力ベクトル」と「転がり慣性」をベクトル加算して、最終的な移動量を決定しています。<br>
+                        慣性ベクトルを保持し、入力停止後も徐々に減速させる処理を実装しました。
+                    </li>
+                </ul>
+            </li>
+            <li><strong>結果</strong>: 操作に心地よい慣性が生まれて、プレイヤーが「物理的にそこに存在する」感覚を実現できました。</li>
+        </ul>
+
+        <h3>2. 空間分割</h3>
+        <ul>
+            <li><strong>課題</strong>: ステージに配置しているオブジェクトが多いのに、すべてのオブジェクトが毎フレーム Update内でプレイヤーとの衝突判定を行っていました。そのため負荷が大きくなり、フレームレートが低下する という問題が発生しました。</li>
+            <li><strong>工夫</strong>: 
+                <ul>
+                    <li>
+                        <h4>８分木空間分割:</h4>
+                        <strong>８分木空間分割を行いました</strong>(時間との相談)
+                    </li>
+                </ul>
+            </li>
+            <li><strong>結果</strong>: 8分木の導入により、衝突判定では「近くにある、かつ高さも近い」オブジェクトのみを高速に抽出できるようになって、判定コストを劇的に削減することに成功しました。そのため、大量のオブジェクトが存在する状況でも高フレームレートを維持できるようになりました。</li>
+        </ul>
+    </section>
+
+</body>
+</html>
