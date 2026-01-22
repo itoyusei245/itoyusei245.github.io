@@ -12,7 +12,7 @@ CA01244004@st.kawahara.ac.jp
 
 **↓Youtubeのリンク↓**
 
-<a href="https://youtu.be/gDvFmIY-Zrc" target="_blank">https://youtu.be/gDvFmIY-Zrc</a>
+<a href="https://www.youtube.com/watch?v=uDLO4aQJlrk" target="_blank">https://www.youtube.com/watch?v=uDLO4aQJlrk</a>
 ---
 
 ## 目次
