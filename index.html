@@ -1,152 +1,379 @@
 <!DOCTYPE html>
-        <html>
-        <head>
-            <meta charset="UTF-8">
-            <title>DeliverEnergy</title>
-            <style>
-/* From extension vscode.github */
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-.vscode-dark img[src$=\#gh-light-mode-only],
-.vscode-light img[src$=\#gh-dark-mode-only],
-.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
-.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
-	display: none;
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
 }
 
 </style>
-            
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+
 <style>
-            body {
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
-                font-size: 14px;
-                line-height: 1.6;
-            }
-        </style>
-        <style>
-.task-list-item {
-    list-style-type: none;
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
 }
 
-.task-list-item-checkbox {
-    margin-left: -20px;
-    vertical-align: middle;
-    pointer-events: none;
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
 }
 </style>
+
 <style>
-:root {
-  --color-note: #0969da;
-  --color-tip: #1a7f37;
-  --color-warning: #9a6700;
-  --color-severe: #bc4c00;
-  --color-caution: #d1242f;
-  --color-important: #8250df;
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
 }
 
 </style>
-<style>
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-note: #2f81f7;
-    --color-tip: #3fb950;
-    --color-warning: #d29922;
-    --color-severe: #db6d28;
-    --color-caution: #f85149;
-    --color-important: #a371f7;
-  }
-}
 
-</style>
-<style>
-.markdown-alert {
-  padding: 0.5rem 1rem;
-  margin-bottom: 16px;
-  color: inherit;
-  border-left: .25em solid #888;
-}
-
-.markdown-alert>:first-child {
-  margin-top: 0
-}
-
-.markdown-alert>:last-child {
-  margin-bottom: 0
-}
-
-.markdown-alert .markdown-alert-title {
-  display: flex;
-  font-weight: 500;
-  align-items: center;
-  line-height: 1
-}
-
-.markdown-alert .markdown-alert-title .octicon {
-  margin-right: 0.5rem;
-  display: inline-block;
-  overflow: visible !important;
-  vertical-align: text-bottom;
-  fill: currentColor;
-}
-
-.markdown-alert.markdown-alert-note {
-  border-left-color: var(--color-note);
-}
-
-.markdown-alert.markdown-alert-note .markdown-alert-title {
-  color: var(--color-note);
-}
-
-.markdown-alert.markdown-alert-important {
-  border-left-color: var(--color-important);
-}
-
-.markdown-alert.markdown-alert-important .markdown-alert-title {
-  color: var(--color-important);
-}
-
-.markdown-alert.markdown-alert-warning {
-  border-left-color: var(--color-warning);
-}
-
-.markdown-alert.markdown-alert-warning .markdown-alert-title {
-  color: var(--color-warning);
-}
-
-.markdown-alert.markdown-alert-tip {
-  border-left-color: var(--color-tip);
-}
-
-.markdown-alert.markdown-alert-tip .markdown-alert-title {
-  color: var(--color-tip);
-}
-
-.markdown-alert.markdown-alert-caution {
-  border-left-color: var(--color-caution);
-}
-
-.markdown-alert.markdown-alert-caution .markdown-alert-title {
-  color: var(--color-caution);
-}
-
-</style>
-        
-        </head>
-        <body class="vscode-body vscode-light">
-            <link rel="stylesheet" href="style.css">
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<link rel="stylesheet" href="style.css">
 <h1 id="deliverenergy">DeliverEnergy</h1>
-<p><img src="file:///c:\Users\CA01244004\Desktop\itoyusei245.github.io\Md_Sprite\Title.png" alt="Title"></p>
+<p><img src="Md_Sprite/Title.png" alt="Title"></p>
 <p><strong>河原電子ビジネス専門学校　ゲームクリエイター科2年</strong> <strong>氏名：伊藤侑生</strong></p>
 <p><strong>↓宛先はこちらです↓</strong></p>
-<p><a href="mailto:CA01244004@st.kawahara.ac.jp">CA01244004@st.kawahara.ac.jp</a></p>
+<p>CA01244004@st.kawahara.ac.jp</p>
 <p><strong>↓Youtubeのリンク↓</strong></p>
-<h2 id="httpswwwyoutubecomwatchvudlo4aqjlrk"><a href="https://www.youtube.com/watch?v=uDLO4aQJlrk" target="_blank">https://www.youtube.com/watch?v=uDLO4aQJlrk</a></h2>
-<h2 id="目次">目次</h2>
+<h2 id="a-href%22httpswwwyoutubecomwatchvudlo4aqjlrk%22-target%22blank%22httpswwwyoutubecomwatchvudlo4aqjlrka"><a href="https://www.youtube.com/watch?v=uDLO4aQJlrk" target="_blank">https://www.youtube.com/watch?v=uDLO4aQJlrk</a></h2>
+<h2 id="%E7%9B%AE%E6%AC%A1">目次</h2>
 <ol>
 <li><a href="#1-%E4%BD%9C%E5%93%81%E6%A6%82%E8%A6%81">作品概要</a></li>
 <li><a href="#2-%E6%8B%85%E5%BD%93%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89">担当ソースコード</a></li>
@@ -192,7 +419,7 @@
 <li><a href="#5-%E6%8A%80%E8%A1%93%E7%B4%B9%E4%BB%8B">技術紹介</a></li>
 </ol>
 <hr>
-<h2 id="1-作品概要">1. 作品概要</h2>
+<h2 id="1-%E4%BD%9C%E5%93%81%E6%A6%82%E8%A6%81">1. 作品概要</h2>
 <ul>
 <li><strong>タイトル</strong>: DeliverEnergy</li>
 <li><strong>制作人数</strong>: 1人</li>
@@ -225,8 +452,8 @@
 </li>
 </ul>
 <hr>
-<h2 id="2-担当ソースコード">2. 担当ソースコード</h2>
-<h3 id="-ゲーム部分-ゲームの進行">▶ ゲーム部分 (ゲームの進行)</h3>
+<h2 id="2-%E6%8B%85%E5%BD%93%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89">2. 担当ソースコード</h2>
+<h3 id="%E2%96%B6-%E3%82%B2%E3%83%BC%E3%83%A0%E9%83%A8%E5%88%86-%E3%82%B2%E3%83%BC%E3%83%A0%E3%81%AE%E9%80%B2%E8%A1%8C">▶ ゲーム部分 (ゲームの進行)</h3>
 <ul>
 <li>BackGround.cpp / .h</li>
 <li>CoinUI.cpp / .h</li>
@@ -246,18 +473,18 @@
 <li>stdafx.cpp / .h</li>
 <li>Title.cpp / .h</li>
 </ul>
-<h3 id="-athletic">▶ Athletic</h3>
+<h3 id="%E2%96%B6-athletic">▶ Athletic</h3>
 <ul>
 <li>AthleticBase.cpp / .h</li>
 <li>AthleticManager.cpp / .h</li>
 <li>AthleticStage.cpp / .h</li>
 <li>AthleticTrigger.cpp / .h</li>
 </ul>
-<h3 id="-collision">▶ Collision</h3>
+<h3 id="%E2%96%B6-collision">▶ Collision</h3>
 <ul>
 <li>CollisionHitManager.cpp / .h</li>
 </ul>
-<h3 id="-enemy">▶ Enemy</h3>
+<h3 id="%E2%96%B6-enemy">▶ Enemy</h3>
 <ul>
 <li>Boss.cpp / .h</li>
 <li>BossStatusUI.cpp / .h</li>
@@ -270,51 +497,51 @@
 <li>NoobEnemy.cpp / .h</li>
 </ul>
 <hr>
-<h2 id="3-操作説明">3. 操作説明</h2>
-<p><img src="file:///c:\Users\CA01244004\Desktop\itoyusei245.github.io\Md_Sprite\Manual.png" alt="操作説明"></p>
+<h2 id="3-%E6%93%8D%E4%BD%9C%E8%AA%AC%E6%98%8E">3. 操作説明</h2>
+<p><img src="Md_Sprite/Manual.png" alt="操作説明"></p>
 <hr>
-<h2 id="4-ゲーム説明">4. ゲーム説明</h2>
-<h3 id="41-ゲーム詳細">4.1 ゲーム詳細</h3>
+<h2 id="4-%E3%82%B2%E3%83%BC%E3%83%A0%E8%AA%AC%E6%98%8E">4. ゲーム説明</h2>
+<h3 id="41-%E3%82%B2%E3%83%BC%E3%83%A0%E8%A9%B3%E7%B4%B0">4.1 ゲーム詳細</h3>
 <p>このゲームは、栄養ドリンクを操作して家主の元までたどり着くとゲームクリアになります。
 プレイヤーは<strong>直立モード</strong>と<strong>転がりモード</strong>を駆使してステージを攻略していきます。</p>
-<h3 id="直立モード">直立モード</h3>
-<p><img src="file:///c:\Users\CA01244004\Desktop\itoyusei245.github.io\Md_Gif\Can_Upright.gif" alt="直立モード"></p>
-<h3 id="転がりモード">転がりモード</h3>
-<p><img src="file:///c:\Users\CA01244004\Desktop\itoyusei245.github.io\Md_Gif\Can_Fall.gif" alt="転がりモード"></p>
+<h3 id="%E7%9B%B4%E7%AB%8B%E3%83%A2%E3%83%BC%E3%83%89">直立モード</h3>
+<p><img src="Md_Gif/Can_Upright.gif" alt="直立モード"></p>
+<h3 id="%E8%BB%A2%E3%81%8C%E3%82%8A%E3%83%A2%E3%83%BC%E3%83%89">転がりモード</h3>
+<p><img src="Md_Gif/Can_Fall.gif" alt="転がりモード"></p>
 <p>マップ構成はボスと戦うステージとアスレチックを攻略するステージの2種類が一体型となったマップ構成になっています。</p>
-<h3 id="ボスステージ">ボスステージ</h3>
-<p><img src="file:///c:\Users\CA01244004\Desktop\itoyusei245.github.io\Md_Sprite\BossStage.png" alt="ボスステージ"></p>
-<h3 id="アスレチックステージ">アスレチックステージ</h3>
-<p><img src="file:///c:\Users\CA01244004\Desktop\itoyusei245.github.io\Md_Sprite\AthleticStage.png" alt="アスレチックステージ"></p>
-<h3 id="42-プレイヤーについて">4.2 プレイヤーについて</h3>
-<h3 id="1-缶の状態">1. 缶の状態</h3>
+<h3 id="%E3%83%9C%E3%82%B9%E3%82%B9%E3%83%86%E3%83%BC%E3%82%B8">ボスステージ</h3>
+<p><img src="Md_Sprite/BossStage.png" alt="ボスステージ"></p>
+<h3 id="%E3%82%A2%E3%82%B9%E3%83%AC%E3%83%81%E3%83%83%E3%82%AF%E3%82%B9%E3%83%86%E3%83%BC%E3%82%B8">アスレチックステージ</h3>
+<p><img src="Md_Sprite/AthleticStage.png" alt="アスレチックステージ"></p>
+<h3 id="42-%E3%83%97%E3%83%AC%E3%82%A4%E3%83%A4%E3%83%BC%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">4.2 プレイヤーについて</h3>
+<h3 id="1-%E7%BC%B6%E3%81%AE%E7%8A%B6%E6%85%8B">1. 缶の状態</h3>
 <p>『直立モード』と『転がりモード』という2つの状態をステートを使って切り替えるアクションを実装しました。
 特に転がり状態では、単純な移動ではなく加速度ベクトルを用いた慣性処理を行い、缶特有の『重み』と『転がり感』を再現しました。また、現在の移動速度をジャンプ力に加算する処理を入れることで、加速を利用して遠くへ飛ぶという挙動を行っています。</p>
-<h3 id="2-カメラ基準の入力処理">2. カメラ基準の入力処理</h3>
+<h3 id="2-%E3%82%AB%E3%83%A1%E3%83%A9%E5%9F%BA%E6%BA%96%E3%81%AE%E5%85%A5%E5%8A%9B%E5%87%A6%E7%90%86">2. カメラ基準の入力処理</h3>
 <p>コントローラー（左スティック）の入力を、カメラの視点方向（Forward / Rightベクトル）に合わせて変換しています。これにより、カメラがどこを向いていても、プレイヤーが「画面上の見たままの方向」に入力できる直感的な操作を行っています。</p>
-<h3 id="3-クォータニオンを用いた複雑な3次元回転の制御">3. クォータニオンを用いた複雑な3次元回転の制御</h3>
+<h3 id="3-%E3%82%AF%E3%82%A9%E3%83%BC%E3%82%BF%E3%83%8B%E3%82%AA%E3%83%B3%E3%82%92%E7%94%A8%E3%81%84%E3%81%9F%E8%A4%87%E9%9B%91%E3%81%AA3%E6%AC%A1%E5%85%83%E5%9B%9E%E8%BB%A2%E3%81%AE%E5%88%B6%E5%BE%A1">3. クォータニオンを用いた複雑な3次元回転の制御</h3>
 <p>プレイヤーの回転制御にはクォータニオン（四元数）を採用しました。『進行方向への旋回』『転倒時の姿勢制御』『移動距離に基づいた自転アニメーション』の3要素を合成し、ジンバルロックを防ぎつつ意図通りの挙動を実装しています。また、状態遷移時にはSlerpを用いた球面線形補間を行い、急激な挙動変化のない滑らかな姿勢変更を実現しました。</p>
-<h3 id="43-敵について">4.3 敵について</h3>
+<h3 id="43-%E6%95%B5%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">4.3 敵について</h3>
 <p>敵は、ボス、ボスの眷属、雑魚敵の3種類が存在します。</p>
-<h3 id="雑魚敵">雑魚敵</h3>
-<p><img src="file:///c:\Users\CA01244004\Desktop\itoyusei245.github.io\Md_Sprite\NoobEnemy.png" alt="雑魚敵"></p>
-<h3 id="ボスの眷属">ボスの眷属</h3>
-<p><img src="file:///c:\Users\CA01244004\Desktop\itoyusei245.github.io\Md_Sprite\Familiar.png" alt="ボスの眷属"></p>
-<h3 id="ボス">ボス</h3>
-<p><img src="file:///c:\Users\CA01244004\Desktop\itoyusei245.github.io\Md_Sprite\Boss.png" alt="ボス"></p>
+<h3 id="%E9%9B%91%E9%AD%9A%E6%95%B5">雑魚敵</h3>
+<p><img src="Md_Sprite/NoobEnemy.png" alt="雑魚敵"></p>
+<h3 id="%E3%83%9C%E3%82%B9%E3%81%AE%E7%9C%B7%E5%B1%9E">ボスの眷属</h3>
+<p><img src="Md_Sprite/Familiar.png" alt="ボスの眷属"></p>
+<h3 id="%E3%83%9C%E3%82%B9">ボス</h3>
+<p><img src="Md_Sprite/Boss.png" alt="ボス"></p>
 <p>敵AIの構築には<strong>ステートパターン</strong>を採用しました。『待機』『移動』『召喚』といった行動を個別のクラスとして実装し、状態遷移の条件を明確に定義することで、複雑なボス戦のフローをバグなく管理しています。これにより、新しい攻撃パターンの追加や仕様変更にも柔軟に対応できる設計となっています。</p>
-<h3 id="1-ボス">1. ボス</h3>
+<h3 id="1-%E3%83%9C%E3%82%B9">1. ボス</h3>
 <p>ゲームの進行を司る中心的な存在であり、自ら攻撃するだけでなく、部下（眷属）を召喚してけしかける「司令塔」としての役割を持っています。</p>
 <ul>
 <li>
-<h4 id="a-ボスの役割とコンセプト">a. ボスの役割とコンセプト</h4>
+<h4 id="a-%E3%83%9C%E3%82%B9%E3%81%AE%E5%BD%B9%E5%89%B2%E3%81%A8%E3%82%B3%E3%83%B3%E3%82%BB%E3%83%97%E3%83%88">a. ボスの役割とコンセプト</h4>
 <ul>
 <li><strong>司令塔</strong>: ボス自体は直接攻撃しても倒せず、召喚した「眷属」をすべて倒すことで初めてダメージが入るギミックを持っています。</li>
 <li><strong>フェーズ管理</strong>: HP（初期値3）が減るごとに、新しい敵の生成（召喚）フェーズへと移行し、戦闘の難易度を段階的に引き上げます。</li>
 </ul>
 </li>
 <li>
-<h4 id="b-実装上の特徴-state-pattern">b. 実装上の特徴 (State Pattern)</h4>
+<h4 id="b-%E5%AE%9F%E8%A3%85%E4%B8%8A%E3%81%AE%E7%89%B9%E5%BE%B4-state-pattern">b. 実装上の特徴 (State Pattern)</h4>
 <ul>
 <li><strong>行動遷移</strong>: <code>BossIdleState</code>（待機）→ <code>BossMoveState</code>（移動）→ <code>BossCreateFamiliarState</code>（召喚）というサイクルで行動します。</li>
 <li><strong>上下の動き</strong>: <code>BossMoveState</code>では、<code>ComputeNextPosition</code>関数を用いて、指定されたY座標の範囲内（<code>BOSS_MIN_Y</code> ～ <code>BOSS_MAX_Y</code>）を浮遊するように往復移動します。</li>
@@ -322,18 +549,18 @@
 </ul>
 </li>
 </ul>
-<h3 id="2-眷属">2. 眷属</h3>
+<h3 id="2-%E7%9C%B7%E5%B1%9E">2. 眷属</h3>
 <p>ボスの「分身体」であり「本体」とも言える存在です。ボスの周囲をガードするように浮遊し、プレイヤーの標的となります。</p>
 <ul>
 <li>
-<h4 id="a-眷属の役割とコンセプト">a. 眷属の役割とコンセプト</h4>
+<h4 id="a-%E7%9C%B7%E5%B1%9E%E3%81%AE%E5%BD%B9%E5%89%B2%E3%81%A8%E3%82%B3%E3%83%B3%E3%82%BB%E3%83%97%E3%83%88">a. 眷属の役割とコンセプト</h4>
 <ul>
 <li><strong>ボスの分身体</strong>: ボスのHP減少のトリガーとなる重要な敵です。倒されると<code>EnemyManager</code>を経由してボスにダメージを与えます。</li>
 <li><strong>随伴行動</strong>: 独立して動くのではなく、ボスの動きに合わせて移動します。</li>
 </ul>
 </li>
 <li>
-<h4 id="b-実装上の特徴-同期制御">b. 実装上の特徴 (同期制御)</h4>
+<h4 id="b-%E5%AE%9F%E8%A3%85%E4%B8%8A%E3%81%AE%E7%89%B9%E5%BE%B4-%E5%90%8C%E6%9C%9F%E5%88%B6%E5%BE%A1">b. 実装上の特徴 (同期制御)</h4>
 <ul>
 <li><strong>親との同期</strong>: <code>FamiliarMoveState</code>内で<code>EnemyManager</code>からボスのインスタンスを取得し、ボスの移動方向フラグ（<code>IsMovingUp</code>）を参照しています。</li>
 <li><strong>速度の調整</strong>: ボスと全く同じ動きをするのではなく、<code>syncSpeedRatio</code>（例: 140/200）を掛けることで、ボスに追従しつつも少し遅れて動くような、浮遊感のある慣性表現を実装しています。</li>
@@ -341,18 +568,18 @@
 </ul>
 </li>
 </ul>
-<h3 id="3-雑魚敵">3. 雑魚敵</h3>
+<h3 id="3-%E9%9B%91%E9%AD%9A%E6%95%B5">3. 雑魚敵</h3>
 <p>画面を賑やかにし、プレイヤーの邪魔をする大量の敵キャラクターです。</p>
 <ul>
 <li>
-<h4 id="a-雑魚敵の役割とコンセプト">a. 雑魚敵の役割とコンセプト</h4>
+<h4 id="a-%E9%9B%91%E9%AD%9A%E6%95%B5%E3%81%AE%E5%BD%B9%E5%89%B2%E3%81%A8%E3%82%B3%E3%83%B3%E3%82%BB%E3%83%97%E3%83%88">a. 雑魚敵の役割とコンセプト</h4>
 <ul>
 <li><strong>数で威圧する</strong>: 眷属召喚のタイミングに合わせて、一度に複数体（4体セットなど）が出現します。</li>
 <li><strong>多様な出現パターン</strong>: 出現するウェーブ数（ボスのダメージ段階）に応じて、出現位置や移動ルートが変化します。</li>
 </ul>
 </li>
 <li>
-<h4 id="b-実装上の特徴-ai-controller--waypoints">b. 実装上の特徴 (AI Controller &amp; Waypoints)</h4>
+<h4 id="b-%E5%AE%9F%E8%A3%85%E4%B8%8A%E3%81%AE%E7%89%B9%E5%BE%B4-ai-controller--waypoints">b. 実装上の特徴 (AI Controller &amp; Waypoints)</h4>
 <ul>
 <li><strong>分離されたAI</strong>: <code>NoobEnemy</code>クラス自体は単純な移動（<code>NoobEnemyMoveState</code>）を行うのみで、複雑な思考ルーチンは<code>EnemyController</code>クラスに委譲しています。</li>
 <li><strong>ウェイポイント巡回</strong>: <code>EnemyController</code>は<code>MOVE_POSITION_LIST</code>に定義された4つの座標（ウェイポイント）を持っています。タイプ（A～Lの12種類）ごとに異なる巡回ルートが設定されており、単調な動きにならないよう工夫されています。</li>
@@ -361,17 +588,17 @@
 </li>
 </ul>
 <hr>
-<h2 id="5-技術紹介">5. 技術紹介</h2>
-<h3 id="1-プレイヤーの転がり処理">1. プレイヤーの転がり処理</h3>
+<h2 id="5-%E6%8A%80%E8%A1%93%E7%B4%B9%E4%BB%8B">5. 技術紹介</h2>
+<h3 id="1-%E3%83%97%E3%83%AC%E3%82%A4%E3%83%A4%E3%83%BC%E3%81%AE%E8%BB%A2%E3%81%8C%E3%82%8A%E5%87%A6%E7%90%86">1. プレイヤーの転がり処理</h3>
 <ul>
 <li>
 <p><strong>課題</strong>: 円筒状のキャラクターが地面を転がる際、移動方向と回転軸がずれると不自然に見えてしまう。また、急に止まると重量感が損なわれてしまうという課題がありました。</p>
 </li>
 <li>
 <p><strong>工夫</strong>:</p>
-<h4 id="1擬似的な慣性-inertia">1.擬似的な慣性 (Inertia):</h4>
+<h4 id="1%E6%93%AC%E4%BC%BC%E7%9A%84%E3%81%AA%E6%85%A3%E6%80%A7-inertia">1.擬似的な慣性 (Inertia):</h4>
 <p>通常のキャラクターコントローラーは入力ストップで即停止します。そこでrollVelocityを変数として持ち、rollVelocity *= 0.5f; のように減衰処理を書いて「滑るような動き」を作りました。</p>
-<h4 id="2-速度の合成">2. 速度の合成:</h4>
+<h4 id="2-%E9%80%9F%E5%BA%A6%E3%81%AE%E5%90%88%E6%88%90">2. 速度の合成:</h4>
 <p>入力ベクトル」と「転がり慣性」をベクトル加算して、最終的な移動量を決定しています。
 慣性ベクトルを保持し、入力停止後も徐々に減速させる処理を実装しました。</p>
 </li>
@@ -380,7 +607,5 @@
 </li>
 </ul>
 
-            
-            
-        </body>
-        </html>
+</body>
+</html>
